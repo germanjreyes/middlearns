@@ -3,221 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Middlebury QR Learning Study</title>
+    <title>Middlebury Learning Study</title>
     <style>
+        :root {
+            --midd-blue: #0D5EAF;
+            --midd-dark: #084389;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --accent: #FFD700;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+            color: var(--text);
+            background-color: var(--light-bg);
         }
-        .container {
+        
+        header {
+            background-color: var(--midd-blue);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(13, 94, 175, 0.9) 0%, rgba(8, 67, 137, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        header {
-            background-color: #0D5EAF;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+        
         h1 {
-            margin: 0;
-            font-size: 2.2em;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
-        h2 {
-            color: #0D5EAF;
-            border-bottom: 2px solid #0D5EAF;
-            padding-bottom: 10px;
-            margin-top: 30px;
+        
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
         }
-        .highlight {
-            background-color: #f2f7ff;
-            border-left: 4px solid #0D5EAF;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #0D5EAF;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            margin: 20px 0;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #084389;
-        }
-        .cta-section {
-            text-align: center;
-            margin: 40px 0;
-            padding: 20px;
-            background-color: #f2f7ff;
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            position: relative;
+            top: -50px;
             border-radius: 8px;
         }
-        footer {
+        
+        section {
+            margin-bottom: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--midd-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .key-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .detail-card {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 40px;
-            border-top: 1px solid #eee;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
         }
-        .eligibility-list li {
-            margin-bottom: 10px;
+        
+        .detail-card:hover {
+            transform: translateY(-5px);
         }
+        
+        .detail-card h3 {
+            color: var(--midd-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--midd-blue);
+        }
+        
+        .cta-button {
+            display: block;
+            background-color: var(--midd-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:after {
+            content: "→";
+            position: absolute;
+            right: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--midd-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover:after {
+            transform: translateX(5px);
+        }
+        
         .timeline {
             display: flex;
-            margin: 30px 0;
-            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
         }
-        .timeline-item {
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--midd-blue);
+            z-index: 0;
+        }
+        
+        .stage {
             flex: 1;
             text-align: center;
-            padding: 15px;
-            background-color: #f2f7ff;
-            margin: 0 5px;
-            border-radius: 5px;
+            padding: 0 10px;
+            position: relative;
+            z-index: 1;
         }
-        .timeline-date {
+        
+        .stage-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--midd-blue);
+            border-radius: 50%;
+            margin: 20px auto;
+            border: 4px solid var(--white);
+        }
+        
+        .stage-date {
             font-weight: bold;
-            color: #0D5EAF;
             margin-bottom: 5px;
         }
-        .faq-item {
-            margin-bottom: 20px;
+        
+        .stage-title {
+            font-size: 0.9rem;
+            color: var(--midd-blue);
         }
-        .faq-question {
+        
+        .compensation {
+            background: linear-gradient(to right, #f9f9f9, #ffffff);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--midd-blue);
+        }
+        
+        .compensation h3 {
+            color: var(--midd-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .money {
+            font-size: 2rem;
             font-weight: bold;
-            color: #0D5EAF;
+            color: var(--midd-blue);
+            margin: 1rem 0;
         }
-        @media (max-width: 600px) {
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f5f5f5;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        .contact {
+            margin-top: 1rem;
+        }
+        
+        .contact a {
+            color: var(--midd-blue);
+            text-decoration: none;
+        }
+        
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .key-details {
+                grid-template-columns: 1fr;
+            }
+            
             .timeline {
                 flex-direction: column;
             }
-            .timeline-item {
-                margin: 5px 0;
+            
+            .timeline:before {
+                width: 2px;
+                height: 100%;
+                left: 30px;
+                top: 0;
+            }
+            
+            .stage {
+                text-align: left;
+                margin-left: 50px;
+                margin-bottom: 20px;
+            }
+            
+            .stage-dot {
+                position: absolute;
+                left: -40px;
+                top: 0;
+                margin: 0;
+            }
+            
+            .container {
+                top: 0;
+                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Middlebury QR Learning Study</h1>
-        <p>Earn $50 guaranteed + up to $1000 in performance bonuses</p>
+        <div class="header-content">
+            <h1>Middlebury Learning Study</h1>
+            <p class="tagline">Earn $50 guaranteed + up to $1000 in bonuses</p>
+        </div>
     </header>
     
     <div class="container">
-        <div class="highlight">
-            <p><strong>Quick Details:</strong></p>
-            <ul>
-                <li><strong>Who:</strong> Current Middlebury College students</li>
-                <li><strong>What:</strong> Research study on learning efficiency using QR codes</li>
-                <li><strong>When:</strong> April 14-28, 2025 (three sessions of 45-60 minutes each)</li>
-                <li><strong>Where:</strong> Davis Family Library, Room 242</li>
-                <li><strong>Compensation:</strong> $50 for completing all sessions + opportunity to earn up to $1000 in performance bonuses</li>
-            </ul>
-            <p><strong>Limited spots available! Sign up now!</strong></p>
-        </div>
-
-        <h2>About the Study</h2>
-        <p>The Middlebury Digital Learning Lab is conducting research on how students interact with and learn from digital information accessed through QR codes. This study aims to understand the effectiveness of QR code-based learning compared to traditional methods and to develop better educational tools for students.</p>
-        
-        <p>Your participation will help shape the future of digital learning at Middlebury and beyond!</p>
-
-        <h2>What You'll Do</h2>
-        <p>Participants will attend three sessions over a two-week period. Each session involves:</p>
-        <ul>
-            <li>Learning new material through digital resources accessed via QR codes</li>
-            <li>Completing short assessments to measure information retention</li>
-            <li>Providing feedback on your learning experience</li>
-        </ul>
-        
-        <p>The total time commitment is approximately 2.5-3 hours spread across three sessions.</p>
-
-        <h2>Study Timeline</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">Session 1</div>
-                <div>April 14-17, 2025</div>
-                <div>Introduction & Initial Assessment</div>
+        <section>
+            <div class="key-details">
+                <div class="detail-card">
+                    <div class="card-icon">👥</div>
+                    <h3>Who</h3>
+                    <p>Current Middlebury College students (all years & majors)</p>
+                </div>
+                <div class="detail-card">
+                    <div class="card-icon">📆</div>
+                    <h3>When</h3>
+                    <p>April 14-28, 2025<br>(Two sessions, one week apart)</p>
+                </div>
+                <div class="detail-card">
+                    <div class="card-icon">📍</div>
+                    <h3>Where</h3>
+                    <p>Davis Family Library<br>Room 242</p>
+                </div>
+                <div class="detail-card">
+                    <div class="card-icon">💰</div>
+                    <h3>Reward</h3>
+                    <p>$50 guaranteed + chance to win up to $1000 more</p>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Session 2</div>
-                <div>April 18-23, 2025</div>
-                <div>Main Learning Activities</div>
+            
+            <a href="https://forms.middlebury.edu/qrstudy-signup" class="cta-button">Sign Up Now (Limited Spots)</a>
+        </section>
+        
+        <section>
+            <h2>About The Study</h2>
+            <p>The Middlebury Digital Learning Lab is investigating how students learn and retain information. Your participation will help shape the future of educational approaches at Middlebury and beyond!</p>
+            
+            <div class="compensation">
+                <h3>Compensation Details</h3>
+                <p>All participants receive:</p>
+                <div class="money">$50 guaranteed payment</div>
+                <p>Plus: Each correct answer on knowledge assessments earns you lottery tickets for a chance to win additional cash prizes (30 prizes of $100 each).</p>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Session 3</div>
-                <div>April 24-28, 2025</div>
-                <div>Final Assessment & Feedback</div>
+        </section>
+        
+        <section>
+            <h2>What You'll Do</h2>
+            <p>This study involves two sessions, about one week apart:</p>
+            
+            <div class="timeline">
+                <div class="stage">
+                    <div class="stage-dot"></div>
+                    <div class="stage-date">Session 1</div>
+                    <div class="stage-title">Learn about a new topic and complete a writing task</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-dot"></div>
+                    <div class="stage-date">Session 2</div>
+                    <div class="stage-title">Follow-up assessment one week later</div>
+                </div>
             </div>
-        </div>
-
-        <h2>Compensation</h2>
-        <p>All participants who complete all three sessions will receive:</p>
-        <ul>
-            <li>$50 base compensation</li>
-            <li>Opportunity to earn up to $1000 in performance bonuses based on assessment scores and engagement</li>
-        </ul>
-        <p>Payments will be processed within 10 business days after completing the final session.</p>
-
-        <h2>Eligibility</h2>
-        <ul class="eligibility-list">
-            <li>Must be a current, enrolled Middlebury College student</li>
-            <li>All majors and class years welcome</li>
-            <li>Must be able to attend all three sessions in person</li>
-            <li>Must have a smartphone capable of scanning QR codes</li>
-        </ul>
-
-        <div class="cta-section">
-            <h2>Ready to Participate?</h2>
-            <p>Sign up now to secure your spot. Limited spaces available!</p>
-            <a href="https://forms.middlebury.edu/qrstudy-signup" class="btn">Complete the Sign-up Survey</a>
-        </div>
-
-        <h2>Frequently Asked Questions</h2>
+            
+            <p>Total time commitment: About 2.5 hours across both sessions</p>
+            
+            <a href="https://forms.middlebury.edu/qrstudy-signup" class="cta-button">Reserve Your Spot Today</a>
+        </section>
         
-        <div class="faq-item">
-            <p class="faq-question">What if I can't make it to one of the sessions?</p>
-            <p>We strongly encourage attending all three sessions. If you have a scheduling conflict, please contact us as soon as possible, and we'll try to accommodate you.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">How will the bonus compensation be determined?</p>
-            <p>Performance bonuses are based on a combination of assessment scores, engagement metrics, and completion of optional learning activities. Full details will be provided during the first session.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">Will I learn what the study results are?</p>
-            <p>Yes! We'll share aggregated findings with all participants after the study concludes.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">Is my data confidential?</p>
-            <p>Yes. All data collected will be anonymized for analysis and protected according to IRB guidelines. Your personal information will not be shared with anyone outside the research team.</p>
-        </div>
-
-        <h2>Contact Information</h2>
-        <p>If you have any questions about the study, please contact:</p>
-        <p><strong>Prof. Jane Smith</strong><br>
-        Principal Investigator, Digital Learning Lab<br>
-        Email: <a href="mailto:jsmith@middlebury.edu">jsmith@middlebury.edu</a><br>
-        Office: McCardell Bicentennial Hall 438</p>
-
         <footer>
             <p>This research study has been approved by the Middlebury College Institutional Review Board<br>
             Protocol #2025-0314</p>
-            <p>&copy; 2025 Middlebury College Digital Learning Lab</p>
+            
+            <div class="contact">
+                Questions? Contact <a href="mailto:jsmith@middlebury.edu">Prof. Jane Smith</a>, Digital Learning Lab
+            </div>
+            
+            <p>&copy; 2025 Middlebury College</p>
         </footer>
     </div>
 </body>
