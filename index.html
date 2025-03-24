@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Participate in Middlebury College's Learning Study and earn $50 guaranteed plus opportunities for additional bonuses up to $1000.">
+    <meta property="og:title" content="Middlebury Learning Study">
+    <meta property="og:description" content="Earn $50 guaranteed + up to $1000 in bonuses while contributing to educational research">
+    <meta property="og:type" content="website">
     <title>Middlebury Learning Study</title>
     <style>
         :root {
@@ -12,6 +16,7 @@
             --white: #ffffff;
             --accent: #FFD700;
             --text: #333333;
+            --light-text: #666666;
         }
         
         * {
@@ -87,6 +92,12 @@
             border-bottom: 2px solid #eee;
         }
         
+        h3 {
+            color: var(--midd-blue);
+            margin: 1.5rem 0 0.75rem 0;
+            font-size: 1.4rem;
+        }
+        
         .key-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -111,6 +122,7 @@
             color: var(--midd-blue);
             margin-bottom: 0.5rem;
             font-size: 1.2rem;
+            margin-top: 0;
         }
         
         .card-icon {
@@ -130,7 +142,7 @@
             font-weight: bold;
             text-align: center;
             transition: all 0.3s ease;
-            max-width: 400px;
+            max-width: 500px;
             margin: 2rem auto;
             position: relative;
             overflow: hidden;
@@ -208,13 +220,85 @@
         .compensation h3 {
             color: var(--midd-blue);
             margin-bottom: 1rem;
+            margin-top: 0;
         }
         
         .money {
-            font-size: 2rem;
+            font-size: 1rem;
             font-weight: bold;
             color: var(--midd-blue);
             margin: 1rem 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: var(--midd-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .accordion {
+            background-color: #f9f9f9;
+            color: var(--midd-dark);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover {
+            background-color: #efefef;
+        }
+
+        .accordion:after {
+            content: '+';
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .active:after {
+            content: '-';
+        }
+        
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .panel p {
+            padding: 10px 0;
+        }
+        
+        .privacy-notice {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            border-left: 4px solid #ddd;
+        }
+        
+        .privacy-notice h3 {
+            font-size: 1.1rem;
+            margin-top: 0;
         }
         
         footer {
@@ -238,6 +322,63 @@
         .contact a:hover {
             text-decoration: underline;
         }
+
+        .steps {
+            list-style-type: none;
+            counter-reset: steps;
+            margin: 1.5rem 0;
+        }
+
+        .steps li {
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .steps li:before {
+            counter-increment: steps;
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--midd-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .testimonial {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+            font-style: italic;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        }
+
+        .testimonial:before {
+            content: """;
+            font-size: 4rem;
+            color: #eaeaea;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-author {
+            font-style: normal;
+            text-align: right;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--midd-dark);
+        }
         
         @media (max-width: 768px) {
             .key-details {
@@ -246,19 +387,22 @@
             
             .timeline {
                 flex-direction: column;
+                align-items: flex-start;
+                margin-left: 20px;
             }
             
             .timeline:before {
                 width: 2px;
-                height: 100%;
-                left: 30px;
-                top: 0;
+                height: calc(100% - 40px);
+                left: 10px;
+                top: 20px;
             }
             
             .stage {
                 text-align: left;
-                margin-left: 50px;
-                margin-bottom: 20px;
+                margin-left: 30px;
+                margin-bottom: 30px;
+                width: calc(100% - 40px);
             }
             
             .stage-dot {
@@ -271,6 +415,20 @@
             .container {
                 top: 0;
                 border-radius: 0;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                max-width: 100%;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -287,74 +445,129 @@
         <section>
             <div class="key-details">
                 <div class="detail-card">
-                    <div class="card-icon">👥</div>
+                    <div class="card-icon" aria-label="Who can participate">👥</div>
                     <h3>Who</h3>
-                    <p>Midd students (all years & majors)</p>
+                    <p>Middlebury students<br>(all years & majors)</p>
                 </div>
                 <div class="detail-card">
-                    <div class="card-icon">📆</div>
+                    <div class="card-icon" aria-label="When the study takes place">📆</div>
                     <h3>When</h3>
                     <p>April 14-28, 2025<br>(Two sessions, one week apart)</p>
                 </div>
                 <div class="detail-card">
-                    <div class="card-icon">📍</div>
-                    <h3>Where</h3>
-                    <p>Davis Family Library<br>Room 242</p>
-                </div>
-                <div class="detail-card">
-                    <div class="card-icon">💰</div>
+                    <div class="card-icon" aria-label="Reward information">💰</div>
                     <h3>Reward</h3>
-                    <p>$50 guaranteed + chance to win up to $1000 more</p>
+                    <p>$50 guaranteed + earn tickets toward 30 prizes of $100 each</p>
                 </div>
             </div>
             
-            <a href="https://forms.middlebury.edu/qrstudy-signup" class="cta-button">Sign Up Now (Limited Spots)</a>
+            <a href="https://forms.middlebury.edu/qrstudy-signup" class="cta-button" aria-label="Complete the in-take survey to sign up">Complete the in-take survey to sign up</a>
         </section>
         
         <section>
             <h2>About The Study</h2>
-            <p>The Middlebury Digital Learning Lab is investigating how students learn and retain information. Your participation will help shape the future of educational approaches at Middlebury and beyond!</p>
+            <p>We are interested in understanding how students approach learning. This research may help shape the future of educational approaches. Your participation is valuable in advancing our understanding of effective learning techniques.</p>
             
-            <div class="compensation">
-                <h3>Compensation Details</h3>
-                <p>All participants receive:</p>
-                <div class="money">$50 guaranteed payment</div>
-                <p>Plus: Each correct answer on knowledge assessments earns you lottery tickets for a chance to win additional cash prizes (30 prizes of $100 each).</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>What You'll Do</h2>
-            <p>This study involves two sessions, about one week apart:</p>
+            <h3>What You'll Do</h3>
+            <ol class="steps">
+                <li>During the first session, you'll learn about a topic (no prior knowledge required).</li>
+                <li>One week later, you'll return to complete a brief survey about your learning experience.</li>
+            </ol>
             
+            <p><strong>Total time commitment</strong>: About 2 hours across both sessions.</p>
+                
             <div class="timeline">
                 <div class="stage">
                     <div class="stage-dot"></div>
                     <div class="stage-date">Session 1</div>
-                    <div class="stage-title">Learn about a new topic and complete a writing task</div>
+                    <div class="stage-title">Learn about a new topic</div>
                 </div>
                 <div class="stage">
                     <div class="stage-dot"></div>
                     <div class="stage-date">Session 2</div>
-                    <div class="stage-title">Follow-up assessment one week later</div>
+                    <div class="stage-title">Answer a brief survey</div>
                 </div>
             </div>
+
+            <div class="compensation">
+                <h3>Compensation Details</h3>
+                <ul>
+                    <li><strong>$50 guaranteed payment</strong> for all participants.</li>
+                    <li><strong>Performance Bonuses:</strong> Earn tickets based on your performance. Based on your performance, you'll earn tickets that enter you into drawings for cash prizes. The better you perform, the more tickets you earn, increasing your chances of winning.</li>
+                    <li><strong>Prize Structure:</strong> 30 separate $100 prizes awarded via random drawing. More tickets = higher chances of winning.</li>
+                </ul>
+            </div>
             
-            <p>Total time commitment: About 2.5 hours across both sessions</p>
-            
-            <a href="https://forms.middlebury.edu/qrstudy-signup" class="cta-button">Reserve Your Spot Today</a>
+
+            <a href="https://middlebury.qualtrics.com/jfe/form/SV_0fI7aWRMxBBaqTs" class="cta-button" aria-label="Complete the in-take survey to sign up">Complete the in-take survey to sign up</a>
         </section>
+        
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            
+            <button class="accordion">What prior knowledge do I need?</button>
+            <div class="panel">
+                <p>No specialized knowledge is required. The study is designed for all Middlebury students regardless of academic background or major.</p>
+            </div>
+            
+            <button class="accordion">How do bonuses work?</button>
+            <div class="panel">
+                <p>Your performance on the study earns you tickets for a prize drawings. The better your performance, the more tickets you can earn, increasing your chances of winning one of the thirty $100 prizes.</p>
+            </div>
+            
+            <button class="accordion">What if I can only attend one session?</button>
+            <div class="panel">
+                <p>Unfortunately, both sessions are required to complete the study and receive compensation.</p>
+            </div>
+            
+            <button class="accordion">Is the study in-person or online?</button>
+            <div class="panel">
+                <p>This study is conducted in-person. We will tell you the location of the study shortly before Session 1. Both sessions require in-person attendance.</p>
+            </div>
+            
+            <button class="accordion">When and how will I receive payment?</button>
+            <div class="panel">
+                <p>The $50 guaranteed payment will be provided at the end of your second session. Prize drawings will be conducted after the study concludes, and winners will be notified by email.</p>
+            </div>
+        </section>
+        
+        <div class="privacy-notice">
+            <h3>Data Privacy Statement</h3>
+            <p>All participant information and responses are kept confidential and used only for research purposes. Data will be anonymized before analysis, and personal identifiers will deleted at the end of the study. This study adheres to Middlebury College's data protection guidelines and has been approved by the Institutional Review Board.</p>
+        </div>
+        
+        <a href="https://middlebury.qualtrics.com/jfe/form/SV_0fI7aWRMxBBaqTs" class="cta-button" aria-label="Complete the in-take survey to sign up">Complete the in-take survey to sign up</a>
         
         <footer>
             <p>This research study has been approved by the Middlebury College Institutional Review Board<br>
-            Protocol #2025-0314</p>
+            Protocol #2025-XYZ</p>
             
             <div class="contact">
-                Questions? Contact <a href="mailto:jsmith@middlebury.edu">Prof. Jane Smith</a>, Digital Learning Lab
+                Questions? Contact <a href="mailto:zcontractor@middlebury.edu">Prof. Zara Contractor</a> or <a href="mailto:greyes@middlebury.edu">Prof. Germán Reyes</a>, Economics Department
             </div>
             
             <p>&copy; 2025 Middlebury College</p>
         </footer>
     </div>
+    
+    <script>
+        // Add JavaScript for accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
